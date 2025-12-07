@@ -1,0 +1,17 @@
+1. Why is MVVM important? Which files represent Model, which files represent View, and which files represent ViewModel?
+MVVM is important because it separates the user interface from the business logic and data handling. This makes the application easier to maintain, test, and extend. Changes to the UI do not affect the data logic, and changes to the data logic do not affect the UI.
+	- Model: Movie.kt, MovieDao.kt, MovieDatabase.kt
+	- View: MainActivity.kt, activity_main.xml, RecyclerView layout
+	- ViewModel: MovieViewModel.kt
+
+2. In Part 1, you implemented Data Binding, why is this more efficient than using the normal method?
+Data Binding is more efficient because it allows the UI to automatically update when the data changes, without manually calling findViewById() or updating views inside observers. It reduces boilerplate code, prevents UI bugs, improves performance, and makes the code cleaner and easier to maintain.
+
+3. In Part 2, you implemented the Singleton Pattern, why is this important?
+The Singleton Pattern is important because it ensures that only one instance of the database is created and used throughout the entire application. This prevents multiple threads from creating different database instances at the same time, which could lead to race conditions and data inconsistency. By maintaining a single shared instance, the application becomes more efficient in terms of memory usage and performance, since creating a database instance is an expensive operation. The Singleton Pattern also guarantees that all parts of the application access the same data source, ensuring data validity.
+
+4. In Part 2 & 3, you implemented the Repository Pattern, why is this important?
+The Repository Pattern is important because it serves as a central point for managing all data operations in the application. It abstracts whether the data comes from the API or the local database, allowing the ViewModel and UI to remain independent of the data source. This makes the code cleaner, easier to test, and easier to maintain. It also improves the user experience by enabling offline access through cached data stored in Room while ensuring that data remains synchronized with the network source when an internet connection is available.
+
+5. In part 3, you implemented the Worker Manager, is there another way to refresh your database with the latest data other than using Worker?
+Yes, there are several other ways to refresh the database besides using WorkManager. The app can refresh data automatically when the user opens the application or when a user performs a swipe-to-refresh action. Data can also be updated manually through a refresh button or by using foreground services while the app is running. In some cases, real-time solutions such as Firebase listeners or WebSockets can be used to push updates directly to the app. However, compared to these methods, WorkManager remains the most reliable solution because it continues to run scheduled background tasks even when the application is closed and follows system power and network constraints.
