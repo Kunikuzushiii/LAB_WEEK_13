@@ -1,5 +1,6 @@
 package com.example.test_lab_week_12
 
+import android.util.Log
 import com.example.test_lab_week_12.api.MovieService
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
@@ -31,5 +32,16 @@ class MovieRepository(
             }
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun fetchMoviesFromNetwork() {
+        val movieDao = movieDatabase.movieDao()
+        try {
+            val popularMovies = movieService.getPopularMovies(apiKey)
+            movieDao.addMovies(popularMovies.results)
+        } catch (exception: Exception) {
+            Log.d("MovieRepository", "Error: ${exception.message}")
+        }
+    }
+
 
 }

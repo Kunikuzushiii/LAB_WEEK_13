@@ -63,6 +63,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.work.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.moshi.kotlin)
     kapt(libs.moshi.kotlin.codegen)
